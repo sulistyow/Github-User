@@ -15,4 +15,6 @@ class LocalDataSource(private val userDao: UserDao) {
 
     fun checkUser(id: Int): Int = userDao.checkUser(id)
 
+    fun removeFavorite(id: Int) = userDao.removeFavorite(id)
+
 }

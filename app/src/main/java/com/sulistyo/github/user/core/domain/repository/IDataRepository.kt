@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IDataRepository {
 
-    fun getFollowers(username: String): Flow<ApiResponse<List<ResponseUserItem>>>
+     fun getFollowers(username: String): Flow<ApiResponse<List<ResponseUserItem>>>
 
     fun getFollowing(username: String): Flow<ApiResponse<List<ResponseUserItem>>>
 
@@ -16,9 +16,11 @@ interface IDataRepository {
 
     fun getFavorites(): Flow<List<UserModel>>
 
-    fun getUserDetail(username: String): Flow<ApiResponse<ResponseDetailUser>>
+    suspend fun getUserDetail(username: String): Flow<ApiResponse<ResponseDetailUser>>
 
     fun checkUser(id: Int): Int
+
+    fun removeFavorite(id: Int)
 
     suspend fun searchUser(query: String): Flow<ApiResponse<List<ResponseUserItem>>>
 }

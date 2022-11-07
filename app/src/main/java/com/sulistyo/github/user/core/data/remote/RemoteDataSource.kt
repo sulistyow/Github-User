@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flowOn
 
 class RemoteDataSource(private val apiService: ApiService) {
 
-    fun getUserDetail(username: String): Flow<ApiResponse<ResponseDetailUser>> {
+    suspend fun getUserDetail(username: String): Flow<ApiResponse<ResponseDetailUser>> {
         return flow {
             try {
                 val response = apiService.getUserDetail(username)
@@ -26,14 +26,15 @@ class RemoteDataSource(private val apiService: ApiService) {
         return flow {
             try {
                 val response = apiService.getFollowers(username)
-                val mData = response.responseFollowers
+                val mData = response
                 if (mData.isNotEmpty()) {
                     emit(ApiResponse.Success(mData))
                 } else {
                     emit(ApiResponse.Error("Data kosong"))
                 }
             } catch (e: Exception) {
-                emit(ApiResponse.Error(e.toString()))
+                emit(ApiResponse.Error(e.message.toString()))
+                Log.e("getfollowers : ", e.message.toString())
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -42,7 +43,7 @@ class RemoteDataSource(private val apiService: ApiService) {
         return flow {
             try {
                 val response = apiService.getFollowing(username)
-                val mData = response.responseFollowing
+                val mData = response
                 if (mData.isNotEmpty()) {
                     emit(ApiResponse.Success(mData))
                 } else {
@@ -50,6 +51,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                 }
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource: ", e.message.toString())
             }
         }.flowOn(Dispatchers.IO)
     }

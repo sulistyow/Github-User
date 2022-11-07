@@ -80,11 +80,13 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.3"
 
     //koin
-    def koin_version = "3.2.2"
+    def koin_version = "3.3.0"
     implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-android-compat:$koin_version"
     testImplementation "io.insert-koin:koin-test:$koin_version"
 
     implementation "com.airbnb.android:lottie:3.4.1"
 
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }

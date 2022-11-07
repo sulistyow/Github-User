@@ -21,7 +21,7 @@ class DataRepository(
     private val appExecutors: AppExecutors
 ) : IDataRepository {
 
-    override fun getFollowers(username: String): Flow<ApiResponse<List<ResponseUserItem>>> {
+    override  fun getFollowers(username: String): Flow<ApiResponse<List<ResponseUserItem>>> {
         return remoteDataSource.getFollowers(username)
     }
 
@@ -36,13 +36,19 @@ class DataRepository(
         }
     }
 
+    override fun removeFavorite(id: Int) {
+        appExecutors.diskIO().execute {
+            localDataSource.removeFavorite(id)
+        }
+    }
+
     override fun getFavorites(): Flow<List<UserModel>> {
         return localDataSource.getFavorites().map {
             DataMapper.entitiesToDomain(it)
         }
     }
 
-    override fun getUserDetail(username: String): Flow<ApiResponse<ResponseDetailUser>> {
+    override suspend fun getUserDetail(username: String): Flow<ApiResponse<ResponseDetailUser>> {
         return remoteDataSource.getUserDetail(username)
     }
 

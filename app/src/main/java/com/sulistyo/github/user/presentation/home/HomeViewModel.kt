@@ -1,4 +1,4 @@
-package com.sulistyo.github.user.presentation.main
+package com.sulistyo.github.user.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.*
 
 @ExperimentalCoroutinesApi
 @FlowPreview
-class MainViewModel(useCase: DataUseCase) : ViewModel() {
+class HomeViewModel(useCase: DataUseCase) : ViewModel() {
 
     val queryChannel = MutableStateFlow("")
 
