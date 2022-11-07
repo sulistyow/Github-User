@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Github User</string>
+    <string name="avatar">Avatar</string>
+
+    <string name="input_search">Masukkan Username</string>
+    <string name="search_user">Search User</string>
+</resources>
