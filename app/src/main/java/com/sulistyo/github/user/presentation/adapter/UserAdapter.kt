@@ -17,7 +17,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
         this.onItemClickCallback = onItemClickCallback
     }
 
-    fun setList(items: List<UserModel>) {
+    fun setData(items: List<UserModel>) {
         listUser.clear()
         listUser.addAll(items)
         notifyDataSetChanged()
@@ -39,7 +39,6 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
             .circleCrop()
             .into(holder.binding.imgAvatar)
         holder.binding.tvUsername.text = user.login
-
         holder.itemView.setOnClickListener {
             onItemClickCallback?.onItemClicked(listUser[position])
         }

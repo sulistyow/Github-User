@@ -41,7 +41,7 @@ class FavoriteFragment : Fragment() {
                     rvMain.adapter = mAdapter
                     rvMain.isVisible = true
                     viewEmpty.isVisible = false
-                    mAdapter.setList(result)
+                    mAdapter.setData(result)
                 }
             } else {
                 bind.apply {

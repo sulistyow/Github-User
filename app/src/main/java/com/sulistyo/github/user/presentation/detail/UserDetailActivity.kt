@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.tabs.TabLayout
@@ -42,35 +43,36 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-
+        showLoading(true)
         viewModel.getDetailUser(user.login.toString())
             .observe(this) { response ->
-                if (response != null) {
-                    when (response) {
-                        is ApiResponse.Success -> {
-                            val data = response.data
-                            Glide.with(this@UserDetailActivity)
-                                .load(data.avatarUrl)
-                                .transition(DrawableTransitionOptions.withCrossFade())
-                                .circleCrop()
-                                .into(binding.imgAvatar)
+                when (response) {
+                    is ApiResponse.Success -> {
+                        showLoading(false)
+                        binding.progressBar.isVisible = false
+                        val data = response.data
+                        Glide.with(this@UserDetailActivity)
+                            .load(data.avatarUrl)
+                            .transition(DrawableTransitionOptions.withCrossFade())
+                            .circleCrop()
+                            .into(binding.imgAvatar)
 
-                            binding.apply {
-                                tvName.text = data.name
-                                tvUsername.text = "@${data.login}"
-                                tvLocation.text = data.location
-                                tvRepository.text = "${data.publicRepos.toString()} Repository"
-                                tvFollower.text = "${data.followers} followers"
-                                tvFollowing.text = "${data.following} following"
-                            }
-                        }
-                        is ApiResponse.Loading -> {
-
-                        }
-                        is ApiResponse.Error -> {
-                            Toast.makeText(this, response.errorMessage, Toast.LENGTH_SHORT).show()
+                        binding.apply {
+                            tvName.text = data.name
+                            tvUsername.text = "@${data.login}"
+                            tvLocation.text = data.location
+                            tvRepository.text = "${data.publicRepos.toString()} Repository"
+                            tvFollower.text = "${data.followers} followers"
+                            tvFollowing.text = "${data.following} following"
                         }
                     }
+                    is ApiResponse.Loading -> {
+                        binding.progressBar.isVisible = true
+                    }
+                    is ApiResponse.Error -> {
+                        Toast.makeText(this, response.errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+
                 }
             }
 
@@ -121,6 +123,10 @@ class UserDetailActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.isVisible = isLoading
     }
 
     companion object {

@@ -62,7 +62,6 @@ class HomeFragment : Fragment() {
                         rvMain.isVisible = false
                         viewLoading.isVisible = false
                         viewEmpty.root.isVisible = false
-                        mAdapter.setList(listOf())
                     } else {
                         lifecycleScope.launch {
                             viewModel.queryChannel.value = s.toString()
@@ -82,10 +81,9 @@ class HomeFragment : Fragment() {
                         rvMain.isVisible = true
                         viewLoading.isVisible = false
                         viewEmpty.root.isVisible = false
-
                         val mData =
                             DataMapper.responseToDomain(result.data)
-                        mAdapter.setList(mData)
+                        mAdapter.setData(mData)
                     }
                     is ApiResponse.Loading -> {
                         viewDefault.isVisible = false

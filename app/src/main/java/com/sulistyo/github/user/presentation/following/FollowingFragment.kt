@@ -35,6 +35,7 @@ class FollowingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val username = arguments?.getString(USERNAME) ?: ""
         mAdapter = UserAdapter()
+        showLoading(true)
         viewModel.getFollowing(username)
         viewModel.following.observe(viewLifecycleOwner) { result ->
             when (result) {
@@ -44,7 +45,7 @@ class FollowingFragment : Fragment() {
                     if (mData.isNotEmpty()) {
                         bind.rvFollowing.isVisible = true
                         bind.viewEmpty.isVisible = false
-                        mAdapter.setList(mData)
+                        mAdapter.setData(mData)
                     } else {
                         bind.rvFollowing.isVisible = false
                         bind.viewEmpty.isVisible = true
