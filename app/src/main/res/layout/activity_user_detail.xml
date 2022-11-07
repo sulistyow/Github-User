@@ -69,64 +69,84 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:padding="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/tv_username">
 
-                    <TextView
-                        android:id="@+id/tv_location"
-                        android:layout_width="0dp"
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawablePadding="4dp"
                         android:gravity="center"
-                        android:text="@string/location"
-                        android:textColor="@color/white"
-                        app:drawableStartCompat="@drawable/ic_location"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_repository"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="4dp"
-                        android:layout_weight="1"
-                        android:drawablePadding="4dp"
-                        android:gravity="center"
-                        android:text="@string/repository"
-                        android:textColor="@color/white"
-                        app:drawableStartCompat="@drawable/ic_library"
-                        app:layout_constraintStart_toEndOf="@+id/tv_location"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+                        <TextView
+                            android:id="@+id/tv_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="4dp"
+                            android:gravity="center"
+                            android:text="@string/location"
+                            android:textColor="@color/white"
+                            app:drawableStartCompat="@drawable/ic_location"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_username" />
 
-                    <TextView
-                        android:id="@+id/tv_following"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="4dp"
-                        android:layout_weight="1"
-                        android:drawablePadding="4dp"
-                        android:gravity="center"
-                        android:text="@string/following"
-                        android:textColor="@color/white"
-                        app:drawableStartCompat="@drawable/ic_following"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_follower"
-                        app:layout_constraintStart_toEndOf="@+id/tv_repository"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+                        <View
+                            android:layout_width="16dp"
+                            android:layout_height="match_parent" />
 
-                    <TextView
-                        android:id="@+id/tv_follower"
-                        android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/tv_repository"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="4dp"
+                            android:drawablePadding="4dp"
+                            android:gravity="center"
+                            android:text="@string/repository"
+                            android:textColor="@color/white"
+                            app:drawableStartCompat="@drawable/ic_library"
+                            app:layout_constraintStart_toEndOf="@+id/tv_location"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="4dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/follower"
-                        android:textColor="@color/white"
-                        app:drawableStartCompat="@drawable/ic_follower"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        tools:layout_editor_absoluteY="234dp" />
+                        android:layout_marginTop="8dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_follower"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="4dp"
+                            android:drawablePadding="4dp"
+                            android:gravity="center"
+                            android:text="@string/follower"
+                            android:textColor="@color/white"
+                            app:drawableStartCompat="@drawable/ic_follower"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:layout_editor_absoluteY="234dp" />
+
+                        <View
+                            android:layout_width="16dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/tv_following"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="4dp"
+                            android:drawablePadding="4dp"
+                            android:gravity="center"
+                            android:text="@string/following"
+                            android:textColor="@color/white"
+                            app:drawableStartCompat="@drawable/ic_following"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_follower"
+                            app:layout_constraintStart_toEndOf="@+id/tv_repository"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <ProgressBar
